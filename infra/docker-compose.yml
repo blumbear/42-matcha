@@ -1,0 +1,18 @@
+services:
+  kong:
+    image: kong:3.9-ubuntu
+    volumes:
+      - ../gateway/kong.yml:/usr/local/kong/declarative/kong.yml
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "127.0.0.1:8001:8001"
+      - "127.0.0.1:8444:8444"
+  pipi:
+    image: node:20
+    volumes:
+      - ./test.js:/usr/src/app
+    ports:
+      - "3001:3001"
