@@ -10,9 +10,9 @@ services:
       - "8443:8443"
       - "127.0.0.1:8001:8001"
       - "127.0.0.1:8444:8444"
-  pipi:
+  user-services:
     image: node:20
     volumes:
-      - ./test.js:/usr/src/app
+      - ../services/users:/usr/src/app
     ports:
       - "3001:3001"
