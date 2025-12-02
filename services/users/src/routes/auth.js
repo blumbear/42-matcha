@@ -17,7 +17,7 @@ async function authRoutes(fastify) {
 
 			await db.run(
 				"INSERT INTO users(name, email, password) VALUES(?, ?, ?)",
-				[name, hashed_password, hashed_password]
+				[name, hashed_email, hashed_password]
 			);
 
 			const user = await db.get("SELECT * FROM users WHERE name=?", 
