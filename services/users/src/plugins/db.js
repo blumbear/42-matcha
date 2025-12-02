@@ -28,11 +28,23 @@ async function dbPlugin(fastify) {
 			location TEXT NOT NULL,
 			profile_pic TEXT NOT NULL,
 			pictures TEXT NOT NULL,
-			gender TEXT NOT NULL,
+			gender ENUM('male', 'female', 'other') NOT NULL,
 			sexual_orientation TEXT NOT NULL,
 			bio TEXT,
 			tags TEXT,
-			age TEXT NOT NULL,
+			age TEXT NOT NULL
+		)
+	`);
+
+	await db.exec(`
+		CREATE TABLE IF NOT EXISTS user_prefs (
+			id INTEGER PRIMARY KEY,
+			pref_gender ENUM('male', 'female', 'any') DEFAULT 'any',
+			pref_tags TEXT,
+			min_age TEXT,
+			max_age TEXT,
+			max_dist TEXT NOT NULL,
+			FOREIGN KEY(id) REFERENCES users(id) ON DELETE CASCADE
 		)
 	`);
 
