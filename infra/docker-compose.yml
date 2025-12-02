@@ -1,6 +1,7 @@
 services:
   kong:
     image: kong:3.9-ubuntu
+    container_name: kong_gateway
     volumes:
       - ../gateway/kong.yml:/usr/local/kong/declarative/kong.yml
     env_file:
@@ -10,9 +11,16 @@ services:
       - "8443:8443"
       - "127.0.0.1:8001:8001"
       - "127.0.0.1:8444:8444"
-  user-services:
-    image: node:20
-    volumes:
-      - ../services/users:/usr/src/app
+  users-services:
+    build:
+      context: ../services/users
+      dockerfile: Dockerfile
+    container_name: users
     ports:
       - "3001:3001"
+    volumes:
+      - ../services/users/src:/usr/src/app/src   # monte ton code
+      - ../services/users/data/users.sqlite:/data/users.sqlite  # monte la DB
+    networks:
+      - web
+      - backend
