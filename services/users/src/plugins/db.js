@@ -22,9 +22,17 @@ async function dbPlugin(fastify) {
 	await db.exec(`
 		CREATE TABLE IF NOT EXISTS users (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
-			name TEXT NOT NULL UNIQUE,
+			name TEXT NOT NULL,
 			email TEXT NOT NULL UNIQUE,
-			password TEXT,
+			password TEXT NOT NULL,
+			location TEXT NOT NULL,
+			profile_pic TEXT NOT NULL,
+			pictures TEXT NOT NULL,
+			gender TEXT NOT NULL,
+			sexual_orientation TEXT NOT NULL,
+			bio TEXT,
+			tags TEXT,
+			age TEXT NOT NULL,
 		)
 	`);
 
