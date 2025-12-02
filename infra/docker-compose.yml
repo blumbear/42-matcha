@@ -24,3 +24,10 @@ services:
     networks:
       - web
       - backend
+
+
+networks:
+  web:
+    driver: bridge
+  backend:
+    driver: bridge
