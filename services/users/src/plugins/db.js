@@ -31,7 +31,7 @@ async function dbPlugin(fastify) {
 			gender ENUM('male', 'female', 'other') NOT NULL,
 			sexual_orientation TEXT NOT NULL,
 			bio TEXT,
-			tags TEXT,
+			tags JSON NOT NULL,
 			age TEXT NOT NULL
 		)
 	`);
@@ -40,7 +40,7 @@ async function dbPlugin(fastify) {
 		CREATE TABLE IF NOT EXISTS user_prefs (
 			id INTEGER PRIMARY KEY,
 			pref_gender ENUM('male', 'female', 'any') DEFAULT 'any',
-			pref_tags TEXT,
+			pref_tags JSON NOT NULL,
 			min_age TEXT,
 			max_age TEXT,
 			max_dist TEXT NOT NULL,
