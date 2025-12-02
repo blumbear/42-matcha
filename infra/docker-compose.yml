@@ -11,6 +11,7 @@ services:
       - "8443:8443"
       - "127.0.0.1:8001:8001"
       - "127.0.0.1:8444:8444"
+
   users-services:
     build:
       context: ../services/users
@@ -18,13 +19,23 @@ services:
     container_name: users
     ports:
       - "3001:3001"
+    env_file:
+      - .env
     volumes:
       - ../services/users/src:/usr/src/app/src   # monte ton code
-      - ../services/users/data/users.sqlite:/data/users.sqlite  # monte la DB
+      - ../services/users/src/data/users.sqlite:/usr/src/app/src/data/users.sqlite  # monte la DB
     networks:
       - web
       - backend
 
+  frontend:
+    build:
+      context: ../frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "5173:5173"    # Vite dev
+    networks: [backend]
 
 networks:
   web:

@@ -8,3 +8,10 @@ services:
         paths:
           - /users
         strip_path: false
+  - name: frontend
+    url: http://frontend:5173    # or http://frontend:8080 if Nginx
+    routes:
+      - name: frontend-root
+        paths:
+          - /
+        strip_path: false

@@ -1,6 +1,6 @@
-import Form from '../components/auth/Form';
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import '../styles/auth/Auth.css'
+import Form from '../components/Auth/Form.tsx';
+// import { GoogleOAuthProvider } from '@react-oauth/google';
+// import '../styles/auth/Auth.css'
 
 // clientID within .env as a varname !!!
 export default function Login() {
