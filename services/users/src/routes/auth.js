@@ -1,6 +1,4 @@
-import { deleteToken, saveToken } from "../utils/tokens.js";
-import { getVaultSecret } from "../plugins/vault.js";
-import { authenticator } from 'otplib';
+import { deleteToken, saveToken } from "../utils/token.js";
 import argon2 from "argon2";
 import crypto from 'crypto';
 import config from "../config.js";
@@ -82,3 +80,5 @@ async function authRoutes(fastify) {
 		}
 	});
 }
+
+export default authRoutes;

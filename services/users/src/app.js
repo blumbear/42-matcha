@@ -2,7 +2,7 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import swagger from "@fastify/swagger";
 import swaggerUi from "@fastify/swagger-ui";
-import config from "../config.js";
+import config from "./config.js";
 
 import dbPlugin from "./plugins/db.js";
 import jwtPlugin from "./plugins/jwt.js";
@@ -18,7 +18,7 @@ async function bootstrap() {
 		credentials: true,
 	});
 
-	USERS_PORT = config.USERS_PORT;
+	const USERS_PORT = config.USERS_PORT;
 
 	await fastify.register(swagger, {
 		openapi: {
