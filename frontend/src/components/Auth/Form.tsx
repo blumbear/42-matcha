@@ -121,7 +121,7 @@ export default function Form(props: FormProps) {
 							className={profile ? "profile-input" : ""}
 							onChange={handleInputChange}
 							value={userData.name}
-							placeholder="Votre pseudo"
+							placeholder="Username"
 							required
 							autoComplete='off'
 						/>

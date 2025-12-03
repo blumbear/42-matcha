@@ -5,11 +5,11 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Login /> },
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-  { path: "/home", element: <Home /> },
-  { path: "*", element: <Navigate to="/" /> },
+	{ path: "/", element: <Login /> },
+	{ path: "/login", element: <Login /> },
+	{ path: "/register", element: <Register /> },
+	{ path: "/home", element: <Home /> },
+	{ path: "*", element: <Navigate to="/" /> },
 ]);
 
 export default router;
