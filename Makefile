@@ -1,7 +1,7 @@
 all : init-db build up
 
 init-db :
-	mkdir -p services/users/src/data
+	mkdir -p services/users/data
 	touch services/users/data/users.sqlite
 
 up :
