@@ -1,32 +1,32 @@
 /* Mobile-first: phone layout defaults */
 .auth-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f7f7f8;
-  padding: 12px; /* small gutter on phones */
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f7f7f8;
+	padding: 12px; /* small gutter on phones */
 }
 
 .auth-form {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .form,
 .form-profile {
-  width: 100%;
-  max-width: 360px; /* phone-friendly width */
-  padding: 20px; /* tighter padding on phones */
-  margin: 0 auto;
-  border-radius: 14px;
-  background: #ffffff;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px; /* comfortable spacing on small screens */
+	width: 100%;
+	max-width: 360px; /* phone-friendly width */
+	padding: 20px; /* tighter padding on phones */
+	margin: 0 auto;
+	border-radius: 14px;
+	background: #ffffff;
+	box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px; /* comfortable spacing on small screens */
 }
 
 /* Inputs grouped and centered (mobile) */
@@ -36,63 +36,63 @@
 .form-profile .name-input,
 .form-profile .email-input,
 .form-profile .pwd-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 12px;
-  width: 100%;
-  max-width: 320px; /* phone input width */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 12px;
+	width: 100%;
+	max-width: 320px; /* phone input width */
 }
 
 .form label,
 .form-profile label {
-  width: 100%;
-  text-align: center;
-  font-weight: 600;
-  font-size: 0.95rem; /* readable on phone */
+	width: 100%;
+	text-align: center;
+	font-weight: 600;
+	font-size: 0.95rem; /* readable on phone */
 }
 
 .in-line {
-  width: 100%;
-  max-width: 320px; /* match inputs */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+	width: 100%;
+	max-width: 320px; /* match inputs */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
 }
 
 .form input,
 .form-profile input {
-  width: 100%;
-  height: 44px; /* larger touch target */
-  padding: 0 12px;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  outline: none;
-  background: #fff;
+	width: 100%;
+	height: 44px; /* larger touch target */
+	padding: 0 12px;
+	font-size: 1rem;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	outline: none;
+	background: #fff;
 }
 
 .form input:focus,
 .form-profile input:focus {
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
+	border-color: #7c3aed;
+	box-shadow: 0 0 0 3px rgba(124,58,237,0.12);
 }
 
 .form button,
 .form-profile button {
-  width: 100%;
-  max-width: 320px; /* align with inputs */
-  margin-top: 10px;
-  height: 46px; /* larger touch target */
-  border: none;
-  border-radius: 10px;
-  background: #7c3aed;
-  color: #fff;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
+	width: 100%;
+	max-width: 320px; /* align with inputs */
+	margin-top: 10px;
+	height: 46px; /* larger touch target */
+	border: none;
+	border-radius: 10px;
+	background: #7c3aed;
+	color: #fff;
+	font-weight: 700;
+	font-size: 1rem;
+	cursor: pointer;
 }
 
 .form button:disabled,
@@ -101,8 +101,29 @@
 /* Links centered under form (mobile) */
 .form span,
 .form-profile span { width: 100%; display: flex; justify-content: center; }
+
+/* Button-styled login/register link sized like inputs */
 .form .link,
-.form-profile .link { display: inline-block; margin: 14px auto 0; text-align: center; font-size: 0.95rem; }
+.form-profile .link {
+	display: block;
+	width: 100%;
+	max-width: 320px; /* match input width on phone */
+	text-align: center;
+	margin: 14px auto 0;
+	padding: 12px 0; /* same height feel as inputs/buttons */
+	border-radius: 10px;
+	background: #7c3aed;
+	color: #fff;
+	font-weight: 700;
+	font-size: 1rem;
+	text-decoration: none;
+}
+
+/* Hover/active states */
+.form .link:hover,
+.form-profile .link:hover { filter: brightness(1.05); }
+.form .link:active,
+.form-profile .link:active { filter: brightness(0.95); }
 
 /* Validation messages */
 .field { width: 100%; display: flex; justify-content: center; }
@@ -111,8 +132,10 @@
 
 /* Responsive bumps for tablet and up */
 @media (min-width: 480px) {
-  .form, .form-profile { max-width: 420px; padding: 24px; }
-  .form .name-input, .form .email-input, .form .pwd-input,
-  .form-profile .name-input, .form-profile .email-input, .form-profile .pwd-input { max-width: 360px; }
-  .in-line, .form button, .form-profile button { max-width: 360px; }
+	.form, .form-profile { max-width: 420px; padding: 24px; }
+	.form .name-input, .form .email-input, .form .pwd-input,
+	.form-profile .name-input, .form-profile .email-input, .form-profile .pwd-input { max-width: 360px; }
+	.in-line, .form button, .form-profile button { max-width: 360px; }
+	.form .link,
+	.form-profile .link { max-width: 360px; }
 }

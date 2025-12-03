@@ -14,7 +14,7 @@ export interface ValidationMsgProps {
 export default function Form(props: FormProps) {
 	const [ userData, setUserData ] = useState<FormData>(userDataInit);
 	const [ validationMsg, setValidationMsg ] = useState<ValidationMsgProps | null>(null);
-	const { login, updateUser } = useAuth();
+	const { login, updateUser, user } = useAuth();
 	// const navigate = useNavigate();
 	const { register, profile } = props;
 
@@ -28,7 +28,7 @@ export default function Form(props: FormProps) {
 			return ;
 		}
 		try {
-			const res = await fetch('http://localhost:3001/users/${users.id}/${fieldName}', {
+			const res = await fetch(`http://localhost:3001/users/${user.id}/${fieldName}`, {
 				method: 'PUT',
 				headers: {'Content-type': 'application/json'},
 				body: JSON.stringify({ [fieldName]: value })
@@ -208,16 +208,20 @@ export default function Form(props: FormProps) {
 						</div>
 					}
 				</div>
-				{/* end of password section */}
-				{
-					!profile && (
-						register ? (
-							<Link to='/login' id='link' className='link'>register</Link>
-						) : (
-							<Link to='/register' id='link' className='link'>login</Link>
-						)
+
+				{!profile && (
+					register ? (
+						<>
+							<Link to='/home' className='link'>Register</Link>
+							<Link to='/login' className='link'>Go to Login</Link>
+						</>
+					) : (
+						<>
+							<Link to='/home' className='link'>Login</Link>
+							<Link to='/register' className='link'>Create an account</Link>
+						</>
 					)
-				}
+				)}
 			</form>
 		</>
 	)
