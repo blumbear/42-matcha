@@ -26,7 +26,7 @@ services:
       - .env
     volumes:
       - ../services/users/src:/usr/src/app/src
-      - ../services/users/src/data/users.sqlite:/usr/src/app/src/data/users.sqlite
+      - ../services/users/data/users.sqlite:/usr/src/app/data/users.sqlite
     networks:
       - backend
 
