@@ -11,6 +11,9 @@ services:
       - "8443:8443"
       - "127.0.0.1:8001:8001"
       - "127.0.0.1:8444:8444"
+    networks:
+      - web
+      - backend
 
   users-services:
     build:
@@ -22,10 +25,9 @@ services:
     env_file:
       - .env
     volumes:
-      - ../services/users/src:/usr/src/app/src   # monte ton code
-      - ../services/users/src/data/users.sqlite:/usr/src/app/src/data/users.sqlite  # monte la DB
+      - ../services/users/src:/usr/src/app/src
+      - ../services/users/src/data/users.sqlite:/usr/src/app/src/data/users.sqlite
     networks:
-      - web
       - backend
 
   frontend:
@@ -34,8 +36,9 @@ services:
       dockerfile: Dockerfile
     container_name: frontend
     ports:
-      - "5173:5173"    # Vite dev
-    networks: [backend]
+      - "5173:80"
+    networks:
+      - backend
 
 networks:
   web:

@@ -18,18 +18,9 @@ async function userRoutes(fastify) {
 	const { db } = fastify;
 
 	fastify.get("/users", async (req, reply) => {
-		try {
-			await authenticate(req, reply);
-		} catch (err) {
-			return ;
-		}
-		const userId = req.user.id;
-		try {
-			const users = await db.all("SELECT id, name, avatar, status, species, planet, dimension FROM users WHERE id!=?", [userId]);
-			return reply.code(200).send(users);
-		} catch (err) {
-			return reply.status(500).send({ message: "Erreur lors de la récupération des utilisateurs." });
-		}
+		// Temporarily public: no JWT required
+		const users = await db.all("SELECT id, name FROM users");
+		return reply.code(200).send(users);
 	});
 
 	fastify.get("/users/:id/", async (req, reply) => {

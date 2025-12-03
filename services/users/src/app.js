@@ -14,7 +14,7 @@ const fastify = Fastify({ logger: true });
 async function bootstrap() {
 	await fastify.register(cors, {
 		origin: ["http://localhost:5173", "https://localhost:8443"],
-		methods: ["POST", "GET", "DELETE", "OPTION", "PUT", "PATCH"],
+		methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 		credentials: true,
 	});
 
@@ -38,8 +38,8 @@ async function bootstrap() {
 	await fastify.register(userRoutes);
 
 	try {
-		await fastify.listen({ port: USER_PROFILE_PORT, host: "0.0.0.0" });
-		fastify.log.info(`Server running at http://localhost:${USER_PROFILE_PORT}`);
+		await fastify.listen({ port: USERS_PORT, host: "0.0.0.0" });
+		fastify.log.info(`Server running at http://localhost:${USERS_PORT}`);
 	} catch (err) {
 		fastify.log.error(err);
 		process.exit(1);
