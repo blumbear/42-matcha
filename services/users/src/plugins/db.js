@@ -30,7 +30,7 @@ async function dbPlugin(fastify) {
 			location TEXT NOT NULL,
 			profile_pic TEXT NOT NULL,
 			pictures TEXT NOT NULL,
-			gender TEXT NOT NULL CHECK (gender IN ('male','female','other')),
+			gender ENUM('male', 'female', 'other') NOT NULL,
 			sexual_orientation TEXT NOT NULL,
 			bio TEXT,
 			tags JSON NOT NULL,
@@ -41,7 +41,7 @@ async function dbPlugin(fastify) {
 	await db.exec(`
 		CREATE TABLE IF NOT EXISTS user_prefs (
 			id INTEGER PRIMARY KEY,
-			gender TEXT NOT NULL CHECK (gender IN ('male','female','any')),
+			pref_gender ENUM('male', 'female', 'any') DEFAULT 'any',
 			pref_tags JSON NOT NULL,
 			min_age TEXT,
 			max_age TEXT,
