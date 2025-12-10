@@ -6,6 +6,8 @@ import config from "../config.js";
 async function dbPlugin(fastify) {
 
 	const DB_PATH = config.USERS_DB_PATH;
+	if (!DB_PATH)
+		throw new Error('USERS_DB_PATH is not set');
 
 	const db = await open({
 		filename: DB_PATH,
@@ -22,9 +24,29 @@ async function dbPlugin(fastify) {
 	await db.exec(`
 		CREATE TABLE IF NOT EXISTS users (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
-			name TEXT NOT NULL UNIQUE,
+			name TEXT NOT NULL,
 			email TEXT NOT NULL UNIQUE,
-			password TEXT,
+			password TEXT NOT NULL,
+			location TEXT NOT NULL,
+			profile_pic TEXT NOT NULL,
+			pictures TEXT NOT NULL,
+			gender ENUM('male', 'female', 'other') NOT NULL,
+			sexual_orientation TEXT NOT NULL,
+			bio TEXT,
+			tags JSON NOT NULL,
+			age TEXT NOT NULL
+		)
+	`);
+
+	await db.exec(`
+		CREATE TABLE IF NOT EXISTS user_prefs (
+			id INTEGER PRIMARY KEY,
+			pref_gender ENUM('male', 'female', 'any') DEFAULT 'any',
+			pref_tags JSON NOT NULL,
+			min_age TEXT,
+			max_age TEXT,
+			max_dist TEXT NOT NULL,
+			FOREIGN KEY(id) REFERENCES users(id) ON DELETE CASCADE
 		)
 	`);
 
