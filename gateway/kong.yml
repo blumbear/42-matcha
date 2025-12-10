@@ -1,8 +1,15 @@
 _format_version: "2.1"
 
 services:
+  - name: frontend
+    url: http://frontend:80
+    routes:
+      - name: frontend-root
+        paths:
+          - /
+        strip_path: false
   - name: user-services
-    url: http://user-api:3001
+    url: http://users-services:3001
     routes:
       - name: user-routes
         paths:

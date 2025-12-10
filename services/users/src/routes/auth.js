@@ -1,6 +1,4 @@
-import { deleteToken, saveToken } from "../utils/tokens.js";
-import { getVaultSecret } from "../plugins/vault.js";
-import { authenticator } from 'otplib';
+import { deleteToken, saveToken } from "../utils/token.js";
 import argon2 from "argon2";
 import crypto from 'crypto';
 import config from "../config.js";
@@ -17,7 +15,7 @@ async function authRoutes(fastify) {
 
 			await db.run(
 				"INSERT INTO users(name, email, password) VALUES(?, ?, ?)",
-				[name, hashed_password, hashed_password]
+				[name, hashed_email, hashed_password]
 			);
 
 			const user = await db.get("SELECT * FROM users WHERE name=?", 
@@ -82,3 +80,5 @@ async function authRoutes(fastify) {
 		}
 	});
 }
+
+export default authRoutes;

@@ -6,6 +6,8 @@ import config from "../config.js";
 async function dbPlugin(fastify) {
 
 	const DB_PATH = config.USERS_DB_PATH;
+	if (!DB_PATH)
+		throw new Error('USERS_DB_PATH is not set');
 
 	const db = await open({
 		filename: DB_PATH,

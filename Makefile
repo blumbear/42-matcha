@@ -1,8 +1,8 @@
 all : init-db build up
 
 init-db :
-	mkdir -p services/users/src/data
-	touch services/users/src/data/users.sqlite
+	mkdir -p services/users/data
+	touch services/users/data/users.sqlite
 
 up :
 	docker compose -f infra/docker-compose.yml up -d
